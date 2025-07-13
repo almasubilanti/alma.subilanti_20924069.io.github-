@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALMA SUBILANTI - Skincare Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6d28d9;
+            --primary-dark: #5b21b6;
+            --secondary: #f3e8ff;
+            --text: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .nav-links a.active {
+            color: var(--primary);
+            font-weight: 600;
+            position: relative;
+        }
+        .nav-links a.active:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: white;
+            color: var(--primary);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Products */
+        .products {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2rem;
+            color: var(--text);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .product-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+        
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .product-desc {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .add-to-cart {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+        
+        .footer-column p, .footer-column a {
+            color: var(--gray);
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Cart Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .cart-modal {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            padding: 15px 0;
+            border-top: 2px solid #eee;
+            margin-top: 10px;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .remove-item {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">ALMA SUBILANTI</a>
+                <div class="nav-links">
+                    <a href="#hero" class="active nav-link">Beranda</a>
+                    <a href="#products" class="nav-link">Produk</a>
+                    <a href="#about" class="nav-link">Tentang Kami</a>
+                    <a href="#contact" class="nav-link">Kontak</a>
+                    <div class="cart-icon" id="cart-btn" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <h1>Skincare Premium untuk Kulit Sehat</h1>
+            <p>Temukan rangkaian produk skincare terbaik dari ALMA SUBILANTI yang diformulasikan khusus untuk merawat kulit Anda</p>
+            <a href="#" class="btn" id="shop-now-btn">Beranda</a>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">Tentang ALMA SUBILANTI</h2>
+            <div class="about-content">
+                <p>ALMA SUBILANTI adalah brand skincare premium yang berkomitmen untuk memberikan perawatan kulit terbaik dengan bahan-bahan alami berkualitas tinggi dan formulasi canggih.</p>
+                <p>Produk kami dirancang oleh ahli dermatologi untuk memenuhi kebutuhan berbagai jenis kulit, mulai dari kulit kering, berminyak, hingga sensitif.</p>
+                <p>Kami percaya bahwa setiap orang berhak mendapatkan kulit sehat dan bersinar tanpa harus menggunakan bahan-bahan keras atau berbahaya.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Produk Unggulan Kami</h2>
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d8b97dd0-f6ff-4aec-a797-e53617c6a2f8.png" alt="Serum vitamin C dengan tekstur cair berwarna kuning muda dalam botol pipet kaca">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Glow Serum Vitamin C</h3>
+                        <p class="product-price">Rp 250.000</p>
+                        <p class="product-desc">Serum pencerah dengan kandungan 15% vitamin C untuk kulit lebih cerah dan merata</p>
+                        <button class="add-to-cart">Tambah ke Keranjang</button>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/94887afb-bcff-4406-a623-2982f80a8c79.png" alt="Moisturizer krim malam dalam kemasan jar kaca dengan tekstur krim putih pekat">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Night Repair Cream</h3>
+                        <p class="product-price">Rp 320.000</p>
+                        <p class="product-desc">Krim malam regeneratif dengan niacinamide dan ceramide untuk perbaikan kulit saat tidur</p>
+                        <button class="add-to-cart">Tambah ke Keranjang</button>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/60ec9ada-9cf8-46d0-a6d7-5a45906eba41.png" alt="Tabir surya dalam tube putih dengan dispenser dengan latar belakang pantai">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Sun Shield SPF 50+</h3>
+                        <p class="product-price">Rp 180.000</p>
+                        <p class="product-desc">Sunscreen broad spectrum dengan tekstur ringan dan tahan air untuk perlindungan optimal</p>
+                        <button class="add-to-cart">Tambah ke Keranjang</button>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/22b76bf8-5ac2-451e-9f65-605c36f40499.png" alt="Pembersih wajah foam dalam botol pump transparan dengan busa putih halus">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Gentle Cleansing Foam</h3>
+                        <p class="product-price">Rp 150.000</p>
+                        <p class="product-desc">Pembersih wajah lembut berbusa dengan pH balanced untuk semua jenis kulit</p>
+                        <button class="add-to-cart">Tambah ke Keranjang</button>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b209575b-d08b-4ef5-983a-08b37f25bfa6.png" alt="Masker wajah sheet dalam kemasan foil dengan gambar daun teh hijau segar">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Green Tea Sheet Mask</h3>
+                        <p class="product-price">Rp 45.000</p>
+                        <p class="product-desc">Masker wajah sheet dengan ekstrak green tea untuk menenangkan dan melembabkan kulit</p>
+                        <button class="add-to-cart">Tambah ke Keranjang</button>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/cea9814b-6a99-4b55-819c-40f801da4149.png" alt="Eye cream dalam jar kecil dengan aplikator logam berujung bulat">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Brightening Eye Cream</h3>
+                        <p class="product-price">Rp 210.000</p>
+                        <p class="product-desc">Krim mata dengan kafein dan vitamin E untuk mengurangi lingkaran hitam dan kantong mata</p>
+                        <button class="add-to-cart">Tambah ke Keranjang</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ALMA SUBILANTI</h3>
+                    <p>Brand skincare premium dengan bahan-bahan alami dan formulasi canggih untuk perawatan kulit optimal.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Produk</h3>
+                    <a href="#">Serum</a>
+                    <a href="#">Moisturizer</a>
+                    <a href="#">Sunscreen</a>
+                    <a href="#">Cleanser</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Bantuan</h3>
+                    <a href="#">Panduan Belanja</a>
+                    <a href="#">Pengembalian</a>
+                    <a href="#">Kebijakan Privasi</a>
+                    <a href="#">Syarat & Ketentuan</a>
+                </div>
+                <div class="footer-column" id="contact">
+                    <h3>Kontak Kami</h3>
+                    <p>Jl. Skincare No. 123, Jakarta</p>
+                    <p>Email: <a href="mailto:info@almasubilanti.com">info@almasubilanti.com</a></p>
+                    <p>Telp: <a href="tel:+6281234567890">+62 812 3456 7890</a></p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2023 ALMA SUBILANTI. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Smooth scroll and navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    
+                    if(targetId === '#' || targetId === '#hero') {
+                        window.scrollTo({top: 0, behavior: 'smooth'});
+                    } else {
+                        document.querySelector(targetId).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Simple cart functionality
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            document.querySelector('.cart-count').textContent = cart.length;
+        }
+
+        function removeFromCart(itemName) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(item => item.name !== itemName);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            showCart(); // Refresh the cart view
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize cart button
+            document.getElementById('cart-btn').addEventListener('click', showCart);
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            const cartCount = document.querySelector('.cart-count');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            // Highlight active nav link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Existing cart functionality...
+
+        // Scroll to top when Beranda is clicked
+        document.getElementById('shop-now-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({top: 0, behavior: 'smooth'});
+            document.querySelector('.nav-links a[href="#"]').click();
+        });
+
+        // Cart modal functionality
+        function showCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            let modalHtml = `
+                <div class="cart-modal">
+                    <h3>Keranjang Belanja</h3>
+                    <div class="cart-items">
+            `;
+            
+            if(cart.length === 0) {
+                modalHtml += `<p>Keranjang Anda masih kosong</p>`;
+            } else {
+                cart.forEach(item => {
+                    modalHtml += `
+                        <div class="cart-item">
+                            <div>${item.name}</div>
+                            <div>Rp${item.price}</div>
+                        </div>
+                    `;
+                });
+            }
+            
+            modalHtml += `</div></div>`;
+            
+            // Show modal
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.innerHTML = modalHtml;
+            document.body.appendChild(modal);
+            
+            // Close modal when clicking outside
+            modal.addEventListener('click', function(e) {
+                if(e.target === this) {
+                    document.body.removeChild(modal);
+                }
+            });
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            let cartHTML = '<div class="cart-modal">';
+            cartHTML += '<h3>Keranjang Belanja</h3>';
+            
+            if(cartItems.length === 0) {
+                cartHTML += '<p>Keranjang Anda masih kosong</p>';
+            } else {
+                cartItems.forEach(item => {
+                    cartHTML += `<div class="cart-item">
+                        <span>${item.name}</span>
+                        <span>Rp ${item.price}</span>
+                        <button class="remove-item" data-name="${item.name}">&times;</button>
+                    </div>`;
+                });
+                
+                const total = cartItems.reduce((sum, item) => sum + item.price, 0);
+                cartHTML += `<div class="cart-total">
+                    <span>Total:</span>
+                    <span>Rp ${total}</span>
+                </div>`;
+                
+                cartHTML += '<button class="checkout-btn">Checkout</button>';
+            }
+            
+            cartHTML += '</div>';
+            
+            // Create modal overlay
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.innerHTML = cartHTML;
+            document.body.appendChild(modal);
+            
+            // Add click handlers
+            modal.querySelectorAll('.remove-item').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const itemName = this.getAttribute('data-name');
+                    removeFromCart(itemName);
+                });
+            });
+            
+            modal.querySelector('.modal-overlay').addEventListener('click', function(e) {
+                if(e.target === this) {
+                    document.body.removeChild(modal);
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            const cartCount = document.querySelector('.cart-count');
+            
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const product = this.closest('.product-card');
+                    const name = product.querySelector('.product-title').textContent;
+                    const priceStr = product.querySelector('.product-price').textContent.replace(/\D/g,'');
+                    const price = parseInt(priceStr);
+                    
+                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    cart.push({name, price});
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    
+                    cartCount.textContent = cart.length;
+                    
+                    alert(`${name} telah ditambahkan ke keranjang!`);
+                });
+            });
+            
+            // Initialize cart count
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cartCount.textContent = cart.length;
+        });
+    </script>
+</body>
+</html>
+
